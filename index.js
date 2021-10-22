@@ -153,6 +153,7 @@ app.post("/register", (req, res) => {
 // Routing : Check Login Credentials
 app.post("/check", (req, res) => {
     const checkForTokenExistance = async () => {
+        try{
         let token_existance = await TokenSchema.find({ username: req.body.user_name.toLowerCase() });
         if (token_existance != 0) {
             req.session.LoginExist = req.body.user_name.toLowerCase();
@@ -160,6 +161,9 @@ app.post("/check", (req, res) => {
             return 1;
         }
         return 0;
+    }catch(err){
+        console.log(err);
+    }
     }
     const saveToken = async (t) => {
         try {
@@ -230,7 +234,11 @@ app.get("/securityIssue", (req, res) => {
     if (req.query.choice === "yes") {
         // Delete Old Token
         const deleteRecentToken = async (id) => {
+            try{
             const result = await TokenSchema.deleteMany({ username: id });
+            }catch(err){
+                console.log(err);
+            }
         }
         // Save New Token 
         const saveNewToken = async (t) => {
@@ -246,6 +254,7 @@ app.get("/securityIssue", (req, res) => {
         }
         // This will resolve token conflicts
         const resolveTokens = async () => {
+            try{
             await deleteRecentToken(user);
             let Token = CreateToken(user.toLowerCase());
             await saveNewToken(Token);
@@ -254,6 +263,9 @@ app.get("/securityIssue", (req, res) => {
                 httpOnly: true,
             });
             return res.redirect("/home");
+        }catch(err){
+            console.log(err);
+        }
         }
         resolveTokens();
 
@@ -275,6 +287,7 @@ app.get("/home", (req, res) => {
     var isset = req.cookies.mailBoxUser;
     // Verify Cookie Function
     const verify = async () => {
+        try{
         // fetch data from token to verify
         const getTokens = await TokenSchema.find({ token: isset });
         if (getTokens.length == 0) {
@@ -286,12 +299,16 @@ app.get("/home", (req, res) => {
         if (getTokens.length < 1) {
             return 2;
         }
+    }catch(err){
+        console.log(err);
+    }
     }
     // Check cookie yes and no
     if (isset === undefined) {
         return res.redirect("/");
     } else {
         const handleCookie = async () => {
+            try{
             const verifyStatus = await verify();
             if (verifyStatus == 0) {
                 res.cookie("mailBoxUser", "Token", {
@@ -307,6 +324,7 @@ app.get("/home", (req, res) => {
                 req.session.accountOwner = owner;
                 req.session.save(); 
                 const serveRecivedMails = async() => {
+                    try{
                     var myMails = await mailCollection.find({receivername:owner});
                     var j = 0,myMailsUpdated=[],mini={},i=myMails.length-1;
                     var yourData = await collection.find({username:owner.toLowerCase()}).select({dp:1});
@@ -339,7 +357,9 @@ app.get("/home", (req, res) => {
                     }
                     // console.log(mails);
                     res.render("home",{mails : mails,yourDp : yourDp});
-
+                }catch(err){
+                    console.log(err);
+                }
                 }
 
                 serveRecivedMails();
@@ -356,10 +376,17 @@ app.get("/home", (req, res) => {
                     httpOnly: true,
                 });
                 const deleteRecentToken = async (id) => {
+                    try{
                     var results = await TokenSchema.deleteMany({ username: id });
+                    }catch(err){
+                        console.log(err);
+                    }
                 }
                 deleteRecentToken(isset);
             }
+        }catch(err){
+            console.log(err);
+        }
         }
         handleCookie();
     }
@@ -373,8 +400,12 @@ app.get("/compose", (req, res) => {
     }else{
         var youDp=""; 
         const getDp = async() => {
+            try{
             var yourData = await collection.find({username:req.session.accountOwner.toLowerCase()}).select({dp:1});
             yourDp = yourData[0].dp;
+            }catch(err){
+                console.log(err);
+            }
         }
         getDp();
         res.render("compose",{yourDp:yourDp});
@@ -389,6 +420,7 @@ app.get("/sent", (req, res) => {
     }else{
 
         const serveSentMails = async() => {
+            try{
             var myMails = await mailCollection.find({sendername:req.session.accountOwner});
             var j = 0,myMailsUpdated=[],mini={},i=myMails.length-1;
             var yourData = await collection.find({username:req.session.accountOwner.toLowerCase()}).select({dp:1});
@@ -423,6 +455,9 @@ app.get("/sent", (req, res) => {
             // console.log(mails);
             // var x = {name : "hii"}
             res.render("sent",{mails : mails,yourDp:yourDp});
+        }catch(err){
+            console.log(err);
+        }
         }
 
         serveSentMails();
@@ -441,6 +476,7 @@ app.get("/show",(req,res) => {
             return res.redirect("/home");
         }else{
             const ShowMail = async() => {
+                try{
                 var mailData = await mailCollection.find({mailcode:req.query.mail});
                 if(mailData.length==0){
                     return res.redirect("/home");
@@ -479,6 +515,9 @@ app.get("/show",(req,res) => {
                 }else{
                     return res.redirect("/home");
                 }
+                }catch(err){
+                    console.log(err);
+                }
             }
             ShowMail();
         }
@@ -493,6 +532,7 @@ app.get("/sentShow",(req,res) => {
             return res.redirect("/home");
         }else{
             const ShowSentMail = async() => {
+                try{
                 var mailData = await mailCollection.find({mailcode:req.query.mail});
                 if(mailData.length==0){
                     return res.redirect("/home");
@@ -530,6 +570,9 @@ app.get("/sentShow",(req,res) => {
                 }else{
                     return res.redirect("/home");
                 }
+            }catch(err){
+                console.log(err);
+            }
             }
             ShowSentMail();
         }
@@ -547,6 +590,7 @@ app.post("/send", (req, res) => {
     }
 
     const savemail = async() => {
+        try{
         const code = await createMailCode();
         const existingUsers = await collection.find({username:req.body.sendTo.toLowerCase()});
         console.log(existingUsers.length);
@@ -583,6 +627,9 @@ app.post("/send", (req, res) => {
             var res = await mail.save();
 
         }
+    }catch(err){
+        console.log(err);
+    }
     }  
     savemail();
     res.redirect("/sent");
@@ -603,6 +650,7 @@ app.post("/sendDrafts", (req, res) => {
     }
 
     const savemail = async() => {
+        try{
         const code = await createMailCode();
         const existingUsers = await collection.find({username:req.body.sendTo.toLowerCase()});
         console.log(existingUsers.length);
@@ -640,6 +688,9 @@ app.post("/sendDrafts", (req, res) => {
             var res = await mail.save();
 
         }
+    }catch(err){
+        console.log(err);
+    }
     }  
     savemail();
     res.redirect("/sent");
@@ -727,9 +778,13 @@ app.post("/updateName",(req,res) =>{
         return res.redirect("/home");
     }else{
         const updataion = async() => {
+            try{
             var newName = req.body.updatedName;
             var newUpdate = await collection.updateOne({username:req.session.accountOwner},{ $set : {name:newName}});
             res.redirect("/profile");
+            }catch(err){
+                console.log(err);
+            }
         }
         if(req.body.updatedName==undefined){
             return res.redirect("/home");
@@ -774,6 +829,7 @@ app.post("/updatePs",(req,res) =>{
         return res.redirect("/home");
     }else{
         const PasswordUpdataion = async() => {
+            try{
             var newPs = req.body.newps;
             var oldPs = req.body.oldps;
             var getPs = await collection.find({username:req.session.accountOwner});
@@ -789,6 +845,9 @@ app.post("/updatePs",(req,res) =>{
                 httpOnly: true,
             });
             res.redirect("/Security");
+        }catch(err){
+            console.log(err);
+        }
         }
         if(req.body.oldps==undefined || req.body.newps==undefined){
             return res.redirect("/home");
@@ -821,8 +880,12 @@ app.get("/help", (req, res) => {
     }else{
         var youDp=""; 
         const getDp = async() => {
+            try{
             var yourData = await collection.find({username:req.session.accountOwner.toLowerCase()}).select({dp:1});
             yourDp = yourData[0].dp;
+            }catch(err){
+                console.log(err);
+            }
         }
         getDp();
         res.render("help",{yourDp:yourDp});
@@ -835,8 +898,12 @@ app.get("/guide", (req, res) => {
     }else{
         var youDp=""; 
         const getDp = async() => {
+            try{
             var yourData = await collection.find({username:req.session.accountOwner.toLowerCase()}).select({dp:1});
             yourDp = yourData[0].dp;
+            }catch(err){
+                console.log(err);
+            }
         }
         getDp();
         res.render("guide",{yourDp:yourDp});
@@ -852,8 +919,12 @@ app.get("/feedback", (req, res) => {
     }else{
         var youDp=""; 
         const getDp = async() => {
+            try{
             var yourData = await collection.find({username:req.session.accountOwner.toLowerCase()}).select({dp:1});
             yourDp = yourData[0].dp;
+            }catch(err){
+                console.log(err);
+            }
         }
         getDp();
         res.render("feedback",{yourDp:yourDp});
@@ -870,8 +941,12 @@ app.get("/contact", (req, res) => {
     }else{
         var youDp=""; 
         const getDp = async() => {
+            try{
             var yourData = await collection.find({username:req.session.accountOwner.toLowerCase()}).select({dp:1});
             yourDp = yourData[0].dp;
+            }catch(err){
+                console.log(err);
+            }
         }
         getDp();
         res.render("contactus",{yourDp:yourDp});
@@ -891,12 +966,16 @@ app.get("/logout", (req, res) => {
         return res.redirect("/home");
     }else{
         const logout = async() => {
+            try{
             var r = await TokenSchema.deleteMany({ username: req.session.accountOwner});
             res.cookie("mailBoxUser", "Token", {
                 expires: new Date(Date.now() + (-10)),
                 httpOnly: true,
             });
             return res.redirect("/");
+        }catch(err){
+            console.log(err);
+        }
         }
         logout();
     }
