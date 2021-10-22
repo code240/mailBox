@@ -737,29 +737,30 @@ app.post("/updateDp",(req,res) =>{
     if(req.session.accountOwner==null){
         return res.redirect("/home");
     }else{
-        var newNameForImage = createName();
+        res.send("Currently This site is hosted on a platform which doesnot allowed to upload images.<br> For now, you can only change your dp by contact the developer. Once this site will hosted on some different platform then this feature will enable for every user.")
+        // var newNameForImage = createName();
         
-        var form = new formidable.IncomingForm();
-        form.parse(req);
+        // var form = new formidable.IncomingForm();
+        // form.parse(req);
 
-        form.on('fileBegin', function (name, file){
-            file.path = __dirname + '/public/profiles/' + newNameForImage;
-        });
+        // form.on('fileBegin', function (name, file){
+        //     file.path = __dirname + '/public/profiles/' + newNameForImage;
+        // });
 
-        form.on('file', function (name, file){
+        // form.on('file', function (name, file){
             
-        });
-        const updateImage = async() =>{
-            var getOldDp = await collection.find({username:req.session.accountOwner.toLowerCase()});
-            var oldDp = getOldDp[0].dp;
-            oldDp = "public/profiles/"+oldDp;
-            await collection.updateOne({username:req.session.accountOwner.toLowerCase()},{$set : {dp : newNameForImage}});
-            if(oldDp!="public/profiles/no_image.jpg"){
-                fs.unlink(oldDp,(err)=>{ if(err!=null){console.log(err);}});
-            }
-        }
-        updateImage();
-        res.redirect("/profile");
+        // });
+        // const updateImage = async() =>{
+        //     var getOldDp = await collection.find({username:req.session.accountOwner.toLowerCase()});
+        //     var oldDp = getOldDp[0].dp;
+        //     oldDp = "public/profiles/"+oldDp;
+        //     await collection.updateOne({username:req.session.accountOwner.toLowerCase()},{$set : {dp : newNameForImage}});
+        //     if(oldDp!="public/profiles/no_image.jpg"){
+        //         fs.unlink(oldDp,(err)=>{ if(err!=null){console.log(err);}});
+        //     }
+        // }
+        // updateImage();
+        // res.redirect("/profile");
     }
 })
 
