@@ -314,7 +314,7 @@ app.get("/home", (req, res) => {
                 res.cookie("mailBoxUser", "Token", {
                     expires: new Date(Date.now() + (-10)),
                     httpOnly: true,
-                });
+                }); 
                 res.session.destroy();
                 res.redirect("/");
             }
@@ -961,7 +961,7 @@ app.get("/contact", (req, res) => {
 
 
 
-
+ 
 
 app.get("/logout", (req, res) => {
     if(req.session.accountOwner==null){
