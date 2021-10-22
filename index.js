@@ -686,6 +686,7 @@ app.get("/user", (req, res) => {
             return res.redirect("/profile");
         }
         const isUserFun = async() => {
+            try{
             const isUser = await collection.find({username:req.query.id.toLowerCase()});
             const sended = await mailCollection.find({sendername:req.session.accountOwner.toLowerCase(),receivername:req.query.id.toLowerCase()})
             const received = await mailCollection.find({receivername:req.session.accountOwner.toLowerCase(),sendername:req.query.id.toLowerCase()})
@@ -705,6 +706,9 @@ app.get("/user", (req, res) => {
                 synergy : synergy,
             }
             res.render("user",{user:user});
+        }catch(err){
+            console.log(err);
+        }
         }
         isUserFun();
     }
