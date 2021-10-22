@@ -315,7 +315,6 @@ app.get("/home", (req, res) => {
                     expires: new Date(Date.now() + (-10)),
                     httpOnly: true,
                 }); 
-                res.session.destroy();
                 res.redirect("/");
             }
             if (verifyStatus == 1) {
@@ -383,7 +382,6 @@ app.get("/home", (req, res) => {
                         console.log(err);
                     }
                 }
-                res.session.destroy();
 
                 res.redirect("/");
 
