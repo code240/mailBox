@@ -1,0 +1,235 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/cssAfterLogin/home.css" />
+    <link rel="stylesheet" href="css/cssAfterLogin/profile.css" />
+    <link rel="stylesheet" href="css/cssAfterLogin/Userprofile.css" />
+    <link rel="shortcut icon" href="media/arroba.png" type="image/x-icon" />
+    <title>User - MailBox</title>
+</head>
+
+<body>
+    <header class="header-top">
+        <div class="header-left-div">
+            <h1 class="brand-heading">
+                <b class="brand-m">M</b>ail<b class="brand-b">B</b>ox
+            </h1>
+        </div>
+        <div class="header-right-div">
+            <div class="for-owner-image">
+                <img src="profiles/{{user.dp}}" class="owner-image" alt="mailBox-user">
+            </div>
+        </div>
+        <div class="clear" style="clear: both;"></div>
+    </header>
+
+
+   <header class="options-header" id="option-header">
+        <span class="bars">
+            <i class="fas fa-bars" onclick="shownav()" id="bar"></i>
+            <i class="fas fa-times" onclick="cutnav()" id="cut"></i>
+        </span>
+    </header>
+
+
+
+
+
+    <header class="icons-header" id="icon-header">
+        <span class="header-icon hi-1 " onclick="window.location.assign('/home');">
+            <i class="far fa-envelope"></i>
+        </span>
+        <span class="header-icon hi-1" onclick="window.location.assign('/sent');">
+            <i class="far fa-paper-plane"></i>
+        </span>
+        <span class="header-icon hi-1"  onclick="window.location.assign('/compose');">
+            <i class="far fa-edit"></i>
+        </span>
+        <span class="header-icon hi-1" onclick="window.location.assign('/profile');">
+            <i class="far fa-user-circle"></i>
+        </span>
+        <span class="header-icon hi-1">
+            <i class="fas fa-bars" onclick="shownav()" id="bar-mobi"></i>
+            <i class="fas fa-times" onclick="cutnav()" id="cut-mobi"></i>
+
+        </span>
+        <div style="clear: both;"></div>
+    </header>
+
+
+    <nav class="navbar">
+        <span class="nav-opt opt-1" onclick="window.location.assign('/home');"> 
+            <i class="fas fa-envelope"></i> &nbsp;&nbsp;&nbsp;&nbsp; Recived 
+        </span>
+        <span class="nav-opt opt-2">
+            <i class="fas fa-paper-plane"></i> &nbsp;&nbsp;&nbsp;&nbsp;  Sent
+        </span>
+        <span class="nav-opt opt-2" onclick="window.location.assign('/compose');">
+            <i class="fas fa-pen-alt"></i> &nbsp;&nbsp;&nbsp;&nbsp;  Compose
+        </span>
+        <span class="nav-opt opt-3">
+            <i class="fas fa-user-circle"></i> &nbsp;&nbsp;&nbsp;&nbsp;  Profile
+        </span>
+        <span class="nav-opt opt-4">
+            <i class="fas fa-share-square"></i> &nbsp;&nbsp;&nbsp;&nbsp; Logout
+        </span>
+        <hr>
+
+        
+        <span class="nav-opt opt-3">
+           <i class="fas fa-question-circle"></i> &nbsp;&nbsp;&nbsp;&nbsp; Help
+        </span>
+        <span class="nav-opt opt-3">
+           <i class="fas fa-info-circle"></i> &nbsp;&nbsp;&nbsp;&nbsp; Guide
+        </span>
+        <span class="nav-opt opt-3">
+           <i class="fas fa-comment-alt"></i> &nbsp;&nbsp;&nbsp;&nbsp; Feedback
+        </span>
+        <span class="nav-opt opt-3">
+           <i class="fas fa-phone-square-alt"></i> &nbsp;&nbsp;&nbsp;&nbsp; Contact us
+        </span>
+
+    </nav>
+
+    <section class="body-div ">
+        <div class="for-section-heading" id="section-heading">
+            <span class="section-icon">
+                <i class="fas fa-user-circle"></i>
+            </span>
+            <div class="for-heading-sh">
+                <span class="section-heading">
+                    Profile
+                </span>
+            </div>
+        </div>
+
+
+        {{!-- <div class="animation-div"></div> --}}
+
+        <div class="main">
+            <div class="for-pic-and-btn">
+                <div class="for-pic">
+                    <img src="profiles/{{user.dp}}" alt="your-dp" class="yourDp">
+                    <div class="pic-shade"></div>
+                    <a href="#dp" style="text-decoration: none;"><button class="btn btn-warning change-btn">Change</button></a>
+                </div>
+            </div>
+            <div class="for-name-and-btn">
+                <h1 class="your-name">
+                    {{user.name}}
+                </h1>
+                <h1 class="your-name your-username">
+                    {{user.username}}
+                </h1>
+                <div class="wanna-change-name">
+                    <span class="update-text">
+                        Total mail shared between you and {{user.firstname}}?<br/>
+                        <span class="fade-color"><b>S</b>end : <b>R</b>eceive</span>
+                    </span>
+                    <h3 class="score">
+                       {{user.totalSended}} : {{user.totalReceived}}
+                    </h3>
+                </div>
+                <div class="wanna-change-dp text-center" id="dp">
+                    <span class="update-text synergy-text">
+                        The relationship / friendship bond between you and {{user.firstname}}:
+                    </span>
+                    <h3 class="score synergy-score">
+                       {{user.synergy}}
+                    </h3>
+                </div>
+                 <div class="wanna-change-ps" id="dp">
+                    <span class="update-text">
+                        Do you want to send a mail to {{user.firstname}}?
+                    </span>
+                    <form action="/send" method="post" name="composeForm" onsubmit="return validmail();">
+                        <input type="hidden" value="{{user.username}}" name="sendTo" autocomplete="off" id="sendTo" placeholder="username@vip.in" class="form-input inp_name">
+                        <input type="text" name="subject" autocomplete="off"  id="subject" placeholder="Subject of mail" class="form-input inp_name">
+                        <input type="text" name="link_inp"  autocomplete="off"  id="link_inp" placeholder="Url (optional)" class="form-input inp_name">
+                        <textarea name="message" id="message" class="form-input inp_name" placeholder="Enter Your message here"></textarea>
+                        <select name="theme" id="cars" class="select-input-compose">
+                            <option value="1">Formal</option>
+                            <option value="2">Hearts</option>
+                            <option value="3">Cloudy</option>
+                            <option value="4">DarkFeel</option>
+                        </select>
+                        <input type="submit" value="update" class="btn btn-update-2 btn-update-3">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+
+ 
+    <script>
+        function shownav(){
+            document.getElementById("bar").style.display = "none";
+            document.getElementById("cut").style.display = "block";
+            
+            document.getElementById("bar-mobi").style.display = "none";
+            document.getElementById("cut-mobi").style.display = "block";
+            document.getElementById("nav").style.display = "block";
+        }
+        function cutnav(){
+            document.getElementById("bar").style.display = "block";
+            document.getElementById("cut").style.display = "none";
+            
+            document.getElementById("bar-mobi").style.display = "block";
+            document.getElementById("cut-mobi").style.display = "none";
+            document.getElementById("nav").style.display = "none";
+        }
+    </script>
+
+
+    <script>
+
+        function validmail(){
+            var username = document.forms["composeForm"]["sendTo"].value;
+            var subject = document.forms["composeForm"]["subject"].value;
+            var message = document.forms["composeForm"]["message"].value;
+            var theme = document.forms["composeForm"]["theme"].value;
+            
+            if(username.trim() ==""){
+                alert("Please enter the username");
+                return false;
+            }
+            username = username.trim();
+            username = username.slice(-7);
+            username = username.toLowerCase();
+            if(username!="@vip.in"){
+                alert("Please enter a valid username");
+                return false;
+            }
+            if(subject.trim() ==""){
+                alert("Please enter the subject");
+                return false;
+            }
+            if(message.trim() ==""){
+                alert("Please enter the message");
+                return false;
+            }
+            if(theme != "1" && theme != "2" && theme != "3" && theme != "4" ){
+                alert("Please enter the valid theme");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

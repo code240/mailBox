@@ -1,0 +1,366 @@
+.main{
+    /* border:1px solid red; */
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 0rem;
+    height:91%;
+}
+.for-pic-and-btn{
+    float: left;
+    width: 53%;
+    height: 100%;
+    position: relative;
+}
+.change-btn{
+    position: absolute;
+    right:3rem;
+    bottom: 1rem;
+    box-shadow: 10px 10px 30px #000;
+}
+.pic-shade{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left:0;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 0px #000;
+}
+.for-pic{
+    width: 100%;
+    height: 100%;
+}
+.yourDp{
+    width: 100%;
+    max-height: 100%;
+}
+
+.for-name-and-btn{
+    float: left;
+    width: 40%;
+    /* border:1px solid red; */
+    height: 100%;
+    overflow: auto;
+}
+.your-name{
+    font-size: 5rem;
+    font-weight:300;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    margin-right: 1rem;
+}
+.wanna-change-name{
+    width: 85%;
+    padding-bottom: 0.7rem;
+    height:auto;
+    background-color: rgb(153, 255, 204);
+    margin-top: 3rem;
+    margin-left: 1rem;
+    padding-top: 0.7rem;
+    border-radius: 1rem;
+}
+.update-text{
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    color: #000;
+    width: 80%;
+    display: block;
+    font-weight: 500;
+    margin-left: 1rem;
+}
+.inp_name{
+    margin-left: 1rem;
+    margin-top: 0.6rem;
+    width: 80%;
+    padding: 4px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid #555;
+    display: block;
+    background-color: #fff;
+}
+.inp_name:focus{
+    outline: 0;
+}
+.btn-update{
+    margin-left: 1rem;
+    margin-top: 1.2rem;
+    background-color: rgb(0, 143, 131);
+    color:#fff;
+    transition: 0.5s ease;
+}
+.btn-update:hover{
+    color:#fff;
+    background-color: rgb(0, 92, 84);
+}
+
+.wanna-change-dp{
+    width: 85%;
+    height: auto;
+    padding-bottom: 0.7rem;
+    background-color: rgb(255, 153, 153);
+    margin-top: 3rem;
+    margin-left: 1rem;
+    padding-top: 0.7rem;
+    border-radius: 1rem;
+}
+.btn-update-2{
+    margin-left: 1rem;
+    margin-top: 1.2rem;
+    background-color: rgb(143, 0, 31);
+    color:#fff;
+    transition: 0.5s ease;
+}
+.btn-update-2:hover{
+    background-color: rgb(90, 0, 20);
+    color:#fff;
+}
+.wanna-change-ps{
+    width: 85%;
+    height: auto;
+    padding-bottom: 0.7rem;
+    background-color: rgb(155, 153, 255);
+    margin-top: 3rem;
+    margin-left: 1rem;
+    padding-top: 0.7rem;
+    margin-bottom: 10rem;
+    border-radius: 1rem;
+}
+.btn-update-3{
+    background-color: rgb(0, 50, 143);
+}
+.btn-update-3:hover{
+    background-color: rgb(0, 30, 85);
+}
+
+@media screen and (max-width : 1250px) {
+    .navbar{
+        width: 16.5rem;
+    }
+    .body-div{
+        padding-left: 16.5rem;
+    }
+    .for-pic-and-btn{
+        width: 60%;
+    }
+    .for-name-and-btn{
+        width: 37%;
+    }
+}
+
+@media screen and (max-width : 1150px) {
+   
+    .for-pic-and-btn{
+        width: 70%;
+    }
+    .for-name-and-btn{
+        width: 27%;
+    }
+}
+@media screen and (max-width : 1050px) {
+    .navbar{
+        width: 12rem;
+    }
+    .body-div{
+        padding-left: 12rem;
+    }
+    .nav-opt{
+        padding-left: 1rem;
+    }
+    .for-pic-and-btn{
+        width: 100%;
+        z-index: 0;
+        /* border: 1px solid red; */
+
+        text-align: center;
+    }
+    .for-name-and-btn{
+        width: 100%;
+        /* border: 1px solid red; */
+        height: auto;
+    }
+    .your-name{
+        text-align: center;
+        margin-top: 3rem;
+        margin-bottom: 4rem;
+    }
+    .wanna-change-name{
+        width: 70%;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 2rem;
+    }
+    .wanna-change-dp{
+        width: 70%;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 2rem;
+    }
+    .wanna-change-ps{
+        width: 70%;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 2rem;
+        margin-bottom: 7rem;
+    }
+    .update-text{
+        padding: 0;
+        margin: 0 auto;
+        margin-top: 1rem;
+    }
+    .inp_name{
+        margin: 0 auto;
+        margin-top: 1rem;
+    }
+
+}
+
+@media screen and (max-width : 750px) {
+    .for-pic-and-btn{
+        width: 100%;
+        z-index: 0;
+        height: 25rem;
+        text-align: center;
+    }
+    .for-name-and-btn{
+        width: 100%;
+        height: auto;
+    }
+    .your-name{
+        text-align: center;
+        margin-top: 3rem;
+        font-size: 4rem;
+        margin-bottom: 4rem;
+    }
+    .wanna-change-name{
+        width: 90%;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 2rem;
+    }
+    .wanna-change-dp{
+        width: 90%;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 2rem;
+    }
+    .wanna-change-ps{
+        width: 90%;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 2rem;
+        margin-bottom: 7rem;
+    }
+    .update-text{
+        padding: 0;
+        margin: 0 auto;
+        margin-top: 1rem;
+    }
+    .inp_name{
+        margin: 0 auto;
+        margin-top: 1rem;
+    }
+
+}
+@media screen and (max-width : 660px) {
+    .body-div{
+        padding-left: 0;
+        padding-top: 9rem;
+    }
+    .navbar{
+        width: 60%;
+    }
+    .nav-opt{
+        padding-left: 3rem;
+    }
+
+}
+@media screen and (max-width : 608px) {
+    .section-heading{
+        font-size: 1.5rem;
+    }
+    .section-icon{
+        font-size: 1.5rem;
+    }
+    .for-pic-and-btn{
+        height: 20rem;
+    }
+}
+@media screen and (max-width : 501px) {
+    /* .body-div{
+        padding-left: 0;
+        padding-top: 9rem;
+    } */
+    .navbar{
+        width: 80%;
+    }
+    .nav-opt{
+        padding-left: 3rem;
+    }
+    .change-btn{
+        display: none;
+    }
+    .pic-shade{
+        box-shadow: 1px 1px 5px #000;
+    }
+
+}
+
+@media screen and (max-width : 500px) {
+    .body-div{
+        padding-top: 7rem;
+    }
+    .for-pic-and-btn{   
+        width: 100%;
+        height: fit-content;
+    }
+    .for-pic{
+        width: 100%;
+        height:100%;
+    }
+    .yourDp{
+        max-width: none;
+        width: 100%;
+        max-height:100%;
+    }
+    .your-name{
+        font-size: 3rem;
+        margin-top: 1.5rem;
+        text-align: left;
+        font-weight: 400;
+        margin-bottom: 2rem;
+    }
+    .wanna-change-name{
+        width: 95%;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 1rem;
+        /* border-radius: 0; */
+    }
+    .wanna-change-dp{
+        width: 95%;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 1rem;
+        /* border-radius: 0; */
+
+    }
+    .wanna-change-ps{
+        width: 95%;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 1rem;
+        margin-bottom: 10rem;
+        /* border-radius: 0; */
+
+    }
+    .update-text{
+        padding: 0;
+        margin: 0 auto;
+        margin-top: 1rem;
+    }
+    .inp_name{
+        margin: 0 auto;
+        margin-top: 1rem;
+    }
+}

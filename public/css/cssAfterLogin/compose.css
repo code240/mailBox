@@ -1,0 +1,191 @@
+body{
+    background-color: rgb(255, 255, 255);
+}
+input{
+    background-color: inherit;
+}
+textarea{
+    background-color: inherit;
+}
+.compose-div{
+    width:40%;
+    height: 33rem;
+    border: 1px solid #888;
+    margin: 0 auto;
+    margin-top: 3rem;
+    box-shadow: 1px 1px 6px #000;
+    /* right:20rem; */
+    /* bottom:4rem; */
+    border-radius:20px;
+    /* position: fixed; */
+    overflow: hidden;
+    background-color: #fff;
+    /* background: linear-gradient(rgba(255,255,255,0.9),rgba(255,255,255,0.9)),url(https://media.istockphoto.com/vectors/light-blue-net-pattern-on-white-background-scientific-and-technical-vector-id960064818); */
+}
+.animation-div{
+    /* border:1px solid red; */
+    width:25%;
+    margin-left: 15%;
+    margin-top: 10%;
+    height: 20rem;
+    background-size: cover;
+}
+.compose-heading{
+    line-height: 3rem;
+    background-color: black;
+    color:#fff;
+    padding-left: 1rem;
+    font-size: 1.2rem;
+}
+.send-to-div{
+    height: 2.5rem;
+    border-bottom: 1px solid #999;
+    padding-left: 0.5rem;
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+.send-to-input{
+    width: 80%;
+    font-weight: 400;
+    border: 0;
+    padding-left: 1rem;
+    font-size: 1.1rem;
+}
+.send-to-input:focus{
+    outline: 0;
+}
+.send-to-input::placeholder{
+    color:rgb(175, 175, 175);
+}
+input::placeholder{
+    color:rgb(175, 175, 175);
+}
+textarea::placeholder{
+    color:rgb(175, 175, 175);
+}
+.subject-div{
+    height: 2.76rem;
+    border-bottom: 1px solid #999;
+    padding-left: 0.5rem;
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 2.76rem;
+}
+.subject-input{
+    width: 75%;
+    font-weight: 400;
+    font-size: 1.1rem;
+    border: 0px solid red;
+    padding-left: 0.5rem;
+    height: 2.45rem;
+    line-height: 2rem;
+}
+.link-input{
+    width: 60%;
+    font-weight: 400;
+    font-size: 1.1rem;
+    border: 0px solid red;
+    padding-left: 0.5rem;
+    height: 2.45rem;
+    line-height: 2rem;
+}
+.link-input:focus{
+    outline: 0;
+}
+.subject-input:focus{
+    outline: 0;
+}
+.message-div{
+    height: 12.76rem;
+    border-bottom: 1px solid #999;
+    padding-left: 0.5rem;
+    font-weight: 400;
+    font-size: 1.2rem;
+    padding-top: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+.message-input{
+    border:0;
+    width: 100%;
+    scrollbar-width: none;
+    padding: 0;
+    height: 10.5rem;
+    resize: none;
+    font-size: 1.1rem;
+}
+.message-input::-webkit-scrollbar{
+    display: none;
+}
+.message-input:focus{
+    outline: 0;
+}
+.send-btn{
+    margin: 7px;
+    padding-left: 1rem;
+    padding-right:1rem;
+    background-color: black;
+    color:#fff;
+    transition: 0.5s ease;
+}
+.send-btn:hover{
+    background-color: rgb(63, 63, 63);
+    color:#fff;
+}
+.compose-body{
+    background:linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.9)) ,url(https://pritcollective.com/wp-content/uploads/2020/08/laptop.jpg);
+}
+.select-input-compose{
+    width: 30%;
+    display: block;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    height: 2rem;
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+.select-input-compose:focus{
+    outline: 0;
+}
+
+
+
+@media screen and (max-width:1200px) {
+    .compose-div{
+        width: 70%;
+    }
+    
+}
+@media screen and (max-width:701px) {
+    .section-icon{
+        font-size: 1.4rem;
+    }
+    .section-heading{
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+    .compose-div{
+        width: 96%;
+        margin: 0 auto;
+        height: auto;
+        margin-top: 0.5rem;
+        padding-bottom: 0rem;
+        margin-bottom: 4rem;
+        box-shadow: 0 0 0 #000;
+    }
+}
+
+
+/* Mobile Design */
+@media screen and (max-width:500px) {
+    .compose-body{
+        background:#eee;
+    }
+    .compose-div{
+        width: 100%;
+        border-radius: 0;
+        margin-top: 0;
+        margin-bottom: 10rem;
+        border-radius: 0px 0px 10px 10px;
+    }
+}

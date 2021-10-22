@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Node Register</title>
+
+</head>
+
+<body>
+    <div class="main-div">
+        <h1>
+            Register Here
+        </h1>
+        <form action="/register" method="post" name="register_form" onsubmit="return validation();">
+            <input type="text" name="name_inp" ondrop="return false;" onpaste="return false;"  autocomplete="off" id="name" class="input-form us-input" placeholder="Name">
+            <input type="email" name="user_name" autocomplete="off" id="username" class="input-form ps-input" placeholder="Username@vip.in">
+            <input type="text" name="phonenumber" onpaste="return false;" ondrop="return false;"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' id="phonenumber" autocomplete="off" class="input-form ps-input" placeholder="Mobile number">
+            <input type="password" name="user_ps" autocomplete="off" id="ps" class="input-form ps-input" placeholder="Password">
+            <input type="submit" value="Register" class="btn btn-success btn-login">
+        </form>
+        
+        <a href="/" style="text-decoration: none;"><button class="btn btn-primary btn-register">Existing user can login  </button></a>
+    </div>
+
+<div class="alert alert-danger alert-div" role="alert" id="alert-div">
+</div>
+
+{{#if RegisterError}}
+    <div class="alert alert-danger alert-div-error-msgs " role="alert" id="alert-div">
+        {{this.RegisterError}}        
+    </div>
+{{/if}}
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+<script>
+
+     function validation(){
+            let name = document.forms["register_form"]["name_inp"].value;
+            let id = document.forms["register_form"]["user_name"].value;
+            let num = document.forms["register_form"]["phonenumber"].value;
+            let ps = document.forms["register_form"]["user_ps"].value;
+            
+            if(name.trim()===""){
+                document.getElementById("alert-div").style.display = "block";
+                document.getElementById("alert-div").innerHTML = "<b>Note : </b>Please enter your name.";
+                setTimeout(()=>{
+                    document.getElementById("alert-div").style.display = "none";
+                },5000);
+                return false; 
+            }
+            if(name.trim().length < 3){
+                document.getElementById("alert-div").style.display = "block";
+                document.getElementById("alert-div").innerHTML = "<b>Note : </b>Name must contain 3 characters.";
+                setTimeout(()=>{
+                    document.getElementById("alert-div").style.display = "none";
+                },5000);
+                return false; 
+            }
+            if(id.trim()===""){
+                document.getElementById("alert-div").style.display = "block";
+                document.getElementById("alert-div").innerHTML = "<b>Note : </b>Please enter a unique username.";
+                setTimeout(()=>{
+                    document.getElementById("alert-div").style.display = "none";
+                },5000);
+                return false; 
+            }
+            if(id.length < 12){
+                document.getElementById("alert-div").style.display = "block";
+                document.getElementById("alert-div").style.top = "1rem";
+                document.getElementById("alert-div").innerHTML = "<b>Note : </b>Your username cannot be less than 12 character.<br> Use <b>@vipin.in</b> at the end of your username";
+                setTimeout(()=>{
+                    document.getElementById("alert-div").style.display = "none";
+                },5000);
+                return false; 
+            }
+            var domain = id.slice(-7);
+            if(domain != "@vip.in"){
+                document.getElementById("alert-div").style.display = "block";
+                document.getElementById("alert-div").style.top = "1rem";
+                document.getElementById("alert-div").innerHTML = "<b>Note : </b> Please use <b>@vip.in</b> at the end of your username";
+                setTimeout(()=>{
+                    document.getElementById("alert-div").style.display = "none";
+                },5000);
+                return false; 
+            }
+            if(num.trim()===""){
+                document.getElementById("alert-div").style.display = "block";
+                document.getElementById("alert-div").innerHTML = "<b>Note : </b>Please enter your phone number.";
+                setTimeout(()=>{
+                    document.getElementById("alert-div").style.display = "none";
+                },5000);
+                return false; 
+            }
+            var num1 = Number(num);
+            if(isNaN(num1)){
+                document.getElementById("alert-div").style.display = "block";
+                document.getElementById("alert-div").innerHTML = "<b>Note : </b>Please enter your phone number carefully.";
+                setTimeout(()=>{
+                    document.getElementById("alert-div").style.display = "none";
+                },5000);
+                return false; 
+            }
+            num = num.toString(); 
+            if(num.length!=10){
+                document.getElementById("alert-div").style.display = "block";
+                 document.getElementById("alert-div").style.top = "1rem";
+                document.getElementById("alert-div").innerHTML = "<b>Note : </b>Your mobile info must contain 10 number.<br/>Please remove 0 and country code from your number.";
+                setTimeout(()=>{
+                    document.getElementById("alert-div").style.display = "none";
+                },5000);
+                return false; 
+            }
+
+            if(ps.trim()===""){
+                document.getElementById("alert-div").style.display = "block";
+                document.getElementById("alert-div").innerHTML = "<b>Note : </b>Please enter the password.";
+                setTimeout(()=>{
+                    document.getElementById("alert-div").style.display = "none";
+                },5000);
+                return false; 
+            }
+            if(ps.trim().length<6){
+                document.getElementById("alert-div").style.display = "block";
+                document.getElementById("alert-div").innerHTML = "<b>Note : </b>Password must contain 6 characters.";
+                setTimeout(()=>{
+                    document.getElementById("alert-div").style.display = "none";
+                },5000);
+                return false; 
+            }
+            return true;
+        }   
+</script>
+</body>
+
+</html>

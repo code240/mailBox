@@ -1,0 +1,37 @@
+.main{
+    display: block;
+    width: 60%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin: 0 auto;
+    margin-top: 7rem;
+    height: auto;
+    background-color: rgb(227, 255, 162);
+    border-radius: 2rem;
+    text-align: center;
+}
+.question{
+    font-family: sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 400;
+}
+.btn-yes{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.btn-no{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+
+@media screen and (max-width:1000px) {
+    .main{
+        display: block;
+        width: 100%;
+        margin-top: 6rem;
+    }
+}

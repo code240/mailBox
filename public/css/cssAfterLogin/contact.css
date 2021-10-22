@@ -1,0 +1,94 @@
+.contact-heading{
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+.main-contact-div{
+    /* border: 1px solid red; */
+    height:auto ;
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+}
+.contact-card{
+    height: auto;
+    /* border: 1px solid red; */
+    width: 19rem;
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+    display: inline-block;
+    padding-top: 0.1rem;
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+    text-align: center;
+    border-radius: 1rem;
+    background-color: rgb(201, 255, 223);
+}
+.my-image{
+    max-width: 100%;
+    height: 100%;
+}
+.brand-img{
+    /* border: 1px solid red; */
+    height:4rem;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+}
+.insta-img{
+    height: 4rem;
+}
+.logo{
+    max-height: 100%;
+    width: 100%;
+}
+.user-img{
+    border: 1px solid rgb(136, 136, 136);
+    height:7rem;
+    width: 7rem;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+.contact-info{
+    font-size: 1.3rem;
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 2rem;
+    font-weight: 600;
+}
+
+.about-heading{
+    font-size: 1.6rem;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 2rem;
+}
+.about-text{
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+
+
+@media screen and (max-width:1300px) {
+    .main-contact-div{
+        padding-bottom: 10rem;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .main-contact-div{
+        padding-bottom: 10rem;
+    }
+    .contact-heading{
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+}

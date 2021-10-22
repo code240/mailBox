@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/cssAfterLogin/compose.css">
+    <link rel="stylesheet" href="css/cssAfterLogin/show.css">
+    <title>SentMail - MailBox</title>
+    <style>
+        .black-screen{
+            background-color: rgba(0, 0, 0, 0.733);
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            top:0;
+            left:0;
+        }
+        #compose-div{
+            display: none;
+        }
+        .compose-div{
+            left:30%;
+            top:5rem;
+        }
+        .btn-cancel{
+            display: block;
+            margin: 0;
+            padding: 0;
+            margin-left: 0.5rem;
+        }
+        .send-to-input::placeholder{
+            color:rgb(255, 92, 92);
+        }
+        input{
+            color:green;
+        }
+        textarea{
+            color:green;
+        }
+        @media screen and (max-width:600px) {
+        .compose-div{
+            left:10%;
+            top:5rem;
+            width: 80%;
+            margin: 0 auto;
+            border-radius: 10px;
+            position: fixed;
+        }
+        }
+    </style>
+</head>
+<body id="body">  
+    <header class="theme-top" id="top">
+        <div class="back-sign-div">
+            <span class="backSign" onclick="window.location.assign('/sent');">
+                {{!-- <i class="fas fa-arrow-left"></i> --}}<i class="fas fa-angle-double-left"></i>
+            </span>
+        </div>
+        <div class="theme-btns-div">
+            <button class="btn btn-success btn-theme" onclick="formal()">Formal</button>
+            <button class="btn btn-love btn-theme" onclick="love()">Love</button>
+            <button class="btn btn-cloudy btn-theme" onclick="cloudy()">Cloudy</button>
+            <button class="btn btn-dark btn-theme" onclick="dark()">Feel dark</button>
+        </div>
+    </header>
+
+
+
+
+<header class="top-mobi" id="top-2">
+        <div class="back-icon-mobi-div">
+            <span class="backSign backSign-mobi"  onclick="window.location.assign('/home');">
+                {{!-- <i class="fas fa-arrow-left"></i> --}}
+                <i class="fas fa-angle-double-left"></i>
+            </span>
+        </div>
+        <div class="for-dp-header-mobi">
+            <div class="header-dp-mobi">
+                <img src="profiles/{{data.receiverDp}}" alt="user" class="dp-mobi-header">
+            </div>
+        </div>
+        <div class="for-name-username-header-mobi">
+            <div class="for-name-mobi text-truncate">
+                Vipin Rao
+            </div>
+            <div class="for-username-mobi text-truncate">
+                sttar@vip.in
+            </div>
+        </div>
+        <div class="bar-div-for-mobi">
+            <span class="bars-mobi">
+                {{!-- <i class="fas fa-bars"></i> --}}
+                <i class="fas fa-ellipsis-h" onclick="showOptions()"></i>
+            </span>
+        </div>
+        <div style="clear: both;"></div>
+    </header>
+
+
+
+
+    
+    <div class="letter-background" id="page">
+        <h1 class="letter-heading">{{data.subject}}</h1>
+        <p class="message-text" id="msg">
+            <span class="left-triangle">
+                <i class="fas fa-caret-right"></i>
+            </span> 
+            {{data.message}}
+        </p>
+         <div class="gap"></div>
+        <span class="link">
+            <span class="url-sign">
+                <i class="fas fa-link"></i>
+            </span>
+            <a href="{{data.redirect}}" style="text-decoration: none;"> 
+                <span class="link-text">
+                    {{data.link}}
+                </span>
+            </a>
+        </span>    
+        <hr class="hr"/>
+        <div class="for-photo-and-address">
+            <div class="for-photo-main">
+                <div class="for-photo">
+                    <a href="user?id={{data.receiverUsername}}" style="text-decoration: none; color:inherit;">
+                        <img src="profiles/{{data.receiverDp}}" alt="mailbox-user" class="user-img">
+                    </a>
+                </div>
+            </div>
+            <address class="mail-address">
+                <span class="about-mail" id="address-answer">
+                    <b class="address-heading" id="address-head-1">Receiver Name :</b> {{data.receivername}}<br>
+                    <b class="address-heading" id="address-head-2">Receiver Username :</b> <a href="user?id={{data.receiverUsername}}" style="text-decoration: none; color:inherit;">{{data.receiverUsername}}</a><br>
+                    <b class="address-heading" id="address-head-3">Date :</b> {{data.date}}<br>
+                    <b class="address-heading" id="address-head-4">Time :</b> {{data.time}}<br>
+                    {{#if data.seen}} 
+                        <b class="address-heading" id="address-head-4">Seen :</b>Yes<br>
+                    {{else}}
+                        <b class="address-heading" id="address-head-4">Seen :</b>No<br>
+                    {{/if}}
+                </span>
+            </address>  
+            <div style="clear: both;"></div> 
+        </div>
+
+
+
+
+        {{#if data.draft}}
+            <button class="btn btn-send-someone" onclick="showCompose();">Send Someone</button>  
+            <div class="black-screen"  id="compose-div">
+                <div class="compose-div">
+                    <h1 class="compose-heading">
+                        Compose 
+                    </h1>
+                    <form action="/sendDrafts" method="POST" name="composeForm" onsubmit="return valid()">
+                        <div class="send-to-div" style="color:#000;">
+                            To :
+                            <input type="email" name="sendTo" autocomplete="off" id="sendTo" placeholder="Enter The username here" class="send-to-input" onchange="normalize()">
+                        </div>
+                        <div class="subject-div" style="color:#000;">
+                            Subject :
+                            <input type="text" name="subject" value="{{data.subject}}" autocomplete="off"  id="subject" placeholder="Subject of mail" class="subject-input">
+                        </div>
+                        <div class="subject-div" style="color:#000;">
+                            Attach any link:
+                            <input type="text" name="link_inp" value="{{data.redirect}}" autocomplete="off"  id="link_inp" placeholder="Url (optional)" class="link-input">
+                        </div>
+                        <div class="message-div">
+                            <textarea name="message" id="message" class="message-input" placeholder="Enter Your message here">{{data.message}}</textarea>
+                        </div>
+                        <select name="theme" id="cars" class="select-input-compose">
+                            <option value="1">Formal</option>
+                            <option value="2">Hearts</option>
+                            <option value="3">Cloudy</option>
+                            <option value="4">DarkFeel</option>
+                        </select>
+                        <input type="hidden" name="mailcode" value="{{data.mailcode}}">
+                        <input type="submit" value="Send" class="btn  send-btn">
+                    </form>
+                    <button class="btn btn-link btn-cancel" onclick="HideCompose()">cancel</button>    
+                </div>
+            </div>
+            <script>
+                function showCompose(){
+                    document.getElementById("compose-div").style.display = "block";
+                }
+                function HideCompose(){
+                    document.getElementById("compose-div").style.display = "none";
+                }
+                
+            </script>
+        {{/if}} 
+    </div>    
+       
+
+    <div class="black-fixed" id="dot-div" onclick="hideOptions()">
+        <div class="dot-options">
+            <button class="btn dot-btns btn-1" onclick="window.location.assign('user?id={{data.senderUsername}}')">View Profile</button>
+            <button class="btn dot-btns"  onclick="window.location.assign('/compose')">Compose</button>
+            <button class="btn dot-btns"  onclick="window.location.assign('/home')">Home</button>
+            <span class="themes-heading-dot">
+                Themes:
+            </span>
+            <button class="btn dot-btns btn-1" onclick="formal()">Formal</button>
+            <button class="btn dot-btns" onclick="love()">Hearts</button>
+            <button class="btn dot-btns" onclick="cloudy()">Cloudy</button>
+            <button class="btn dot-btns" onclick="dark()">DarkFeel</button>
+
+        </div>
+    </div>
+
+
+
+    <script>
+        function hideOptions(){
+            document.getElementById("dot-div").style.display = "none";
+        }
+        function showOptions(){
+            document.getElementById("dot-div").style.display = "block";
+        }
+    </script>
+
+    <script>
+        function formal(){
+            document.getElementById("body").style.backgroundColor = "#e9e9e9";
+            document.getElementById("body").style.backgroundImage = "url('media/formal.png')";
+            document.getElementById("top").style.backgroundColor = "#000";
+            document.getElementById("top-2").style.backgroundColor = "#333";
+            document.getElementById("page").style.backgroundColor = "#ffffff";
+            document.getElementById("page").style.boxShadow = "0px 0px 0px #000";
+
+             //set them default
+            document.getElementById("page").style.color = "#000";
+            document.getElementById("msg").style.color = "#000";
+            document.getElementById("address-answer").style.color = "#000";
+            document.getElementById("top").style.boxShadow = "0px 0px 0px #999";
+        }
+        
+        function love(){
+            document.getElementById("body").style.backgroundImage = "url('https://cdn.pixabay.com/photo/2018/01/12/13/26/background-3078239_1280.jpg')";
+            document.getElementById("top").style.backgroundColor = "#ca001b";
+            document.getElementById("top-2").style.backgroundColor = "#ca001b";
+
+            document.getElementById("top").style.boxShadow = "1px 1px 30px #000";
+            document.getElementById("page").style.backgroundColor = "#eeeeee4a";
+            document.getElementById("page").style.boxShadow = "1px 1px 50px #000";
+
+             //set them default
+            document.getElementById("page").style.color = "#000";
+            document.getElementById("msg").style.color = "#000";
+            document.getElementById("address-answer").style.color = "#000";
+           
+        }
+
+        function cloudy(){
+            document.getElementById("body").style.backgroundImage = "url('https://www.channelfutures.com/files/2019/12/4-Clouds-Blue-Sky.jpg')";
+            document.getElementById("top").style.backgroundColor = "#0d5185";
+            document.getElementById("top-2").style.backgroundColor = "#0d5185";
+            document.getElementById("top").style.boxShadow = "1px 1px 30px #000";
+            document.getElementById("page").style.backgroundColor = "#eeeeeea6";
+            document.getElementById("page").style.boxShadow = "1px 1px 50px #000";
+
+            //set them default
+            document.getElementById("page").style.color = "#000";
+            document.getElementById("msg").style.color = "#000";
+            document.getElementById("address-answer").style.color = "#000";
+           
+        }
+        
+        function dark(){
+            document.getElementById("body").style.backgroundImage = "url('https://cdn.pixabay.com/photo/2016/12/29/18/44/background-1939128_1280.jpg')";
+            document.getElementById("top").style.backgroundColor = "#000000";
+            document.getElementById("top-2").style.backgroundColor = "#222";
+            document.getElementById("page").style.backgroundColor = "rgb(40,40,40,0.4)";
+            document.getElementById("page").style.color = "#fff";
+            document.getElementById("msg").style.color = "#999";
+            document.getElementById("address-answer").style.color = "#999";
+            document.getElementById("top").style.boxShadow = "0px 0px 0px #999";
+            document.getElementById("page").style.boxShadow = "0px 0px 0px #999";
+        }
+    </script>
+       
+    
+
+    <script>
+        function valid(){
+            var username = document.forms["composeForm"]["sendTo"].value;
+            var subject = document.forms["composeForm"]["subject"].value;
+            var message = document.forms["composeForm"]["message"].value;
+            var theme = document.forms["composeForm"]["theme"].value;
+
+            if(username.trim() ==""){
+                alert("Please enter the username");
+                return false;
+            }
+            username = username.trim();
+            username = username.slice(-7);
+            username = username.toLowerCase();
+            if(username!="@vip.in"){
+                alert("Please enter a valid username");
+                return false;
+            }
+            if(subject.trim() ==""){
+                alert("Please enter the subject");
+                return false;
+            }
+            if(message.trim() ==""){
+                alert("Please enter the message");
+                return false;
+            }
+            if(theme != "1" && theme != "2" && theme != "3" && theme != "4" ){
+                alert("Please enter the valid theme");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    {{#if data.Formal}}
+        <script>
+            formal();
+        </script>
+    {{/if}}
+    {{#if data.Love}}
+        <script>
+            love();
+        </script>
+    {{/if}}
+    {{#if data.Cloudy}}
+        <script>
+            cloudy();
+        </script>
+    {{/if}}
+    {{#if data.DarkFeel}}
+        <script>
+            dark();
+        </script>
+    {{/if}}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+</html>
