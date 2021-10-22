@@ -315,6 +315,9 @@ app.get("/home", (req, res) => {
                     expires: new Date(Date.now() + (-10)),
                     httpOnly: true,
                 }); 
+                req.session.test = "";
+                req.session.save();
+                req.session.destroy();
                 res.redirect("/");
             }
             if (verifyStatus == 1) {
