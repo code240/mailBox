@@ -972,6 +972,7 @@ app.get("/logout", (req, res) => {
                 expires: new Date(Date.now() + (-10)),
                 httpOnly: true,
             });
+            req.session.destroy();
             return res.redirect("/");
         }catch(err){
             console.log(err);
