@@ -138,7 +138,7 @@
                     <span class="update-text">
                         Do you want to update your Profile Photo?
                     </span>
-                    <form action="updateDp" method="post" name="dpForm"  enctype="multipart/form-data" onsubmit="return validDp();">
+                    <form action="updateDp" method="post" name="dpForm" {{!--enctype="multipart/form-data" --}}  onsubmit="return validDp();">
                         <input type="file" class="form-input inp_name" accept="image/png , image/jpeg" name="updatedDp">
                         <input type="submit" value="update" class="btn btn-update-2">
                     </form>
