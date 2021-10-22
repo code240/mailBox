@@ -661,6 +661,7 @@ app.get("/profile",(req,res) =>{
             let SendThis = {
                 name : getProfile[0].name,
                 dp : getProfile[0].dp,
+                username : getProfile[0].username,
             }
             return res.render("profile",{data:SendThis});
             }catch(err){
