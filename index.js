@@ -588,6 +588,9 @@ app.get("/sentShow",(req,res) => {
 
 
 app.post("/send", (req, res) => {
+    var time = today.getHours() + ":" + today.getMinutes(); 
+    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+
     if(req.body.link_inp == ""){
         req.body.link_inp = " ";
     }
@@ -648,6 +651,8 @@ app.post("/send", (req, res) => {
 
 
 app.post("/sendDrafts", (req, res) => {
+    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+    var time = today.getHours() + ":" + today.getMinutes(); 
     if(req.body.link_inp == ""){
         req.body.link_inp = " ";
     }
