@@ -376,7 +376,6 @@ app.get("/home", (req, res) => {
                     expires: new Date(Date.now() + (-10)),
                     httpOnly: true,
                 });
-                res.session.destroy();
                 const deleteRecentToken = async (id) => {
                     try{
                     var results = await TokenSchema.deleteMany({ username: id });
@@ -384,6 +383,10 @@ app.get("/home", (req, res) => {
                         console.log(err);
                     }
                 }
+                res.session.destroy();
+
+                res.redirect("/");
+
                 deleteRecentToken(isset);
             }
         }catch(err){
