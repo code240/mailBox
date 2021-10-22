@@ -412,6 +412,9 @@ body{
     #option-header{
         display: none;
     }
+    .brand-heading{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
     .header-top{
         padding-top: 0.4rem;
         padding-bottom: 0.4rem;

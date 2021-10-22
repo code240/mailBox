@@ -205,6 +205,9 @@ body{
     }
 }
 @media screen and (max-width:550px) {
+    .brand-heading{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
     body{
         padding-bottom: 10rem;
     }
